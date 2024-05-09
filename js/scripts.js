@@ -19,7 +19,7 @@ const nav = new mapboxgl.NavigationControl();
 map.addControl(nav, 'top-right');
 
 // loop over the grocery store script to make a marker for each record
-grocerystores.forEach(function (grocerystoresRecord) {
+groceryStores.forEach(function (grocerystoresRecord) {
 
     var color
 

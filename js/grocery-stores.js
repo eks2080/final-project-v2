@@ -1,4 +1,4 @@
-[
+var groceryStores = [
     {
         "ID": 1,
         "name": "Trader Joes",
