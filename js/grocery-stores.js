@@ -319,7 +319,7 @@ var groceryStores = [
         "state": "NY",
         "zipcode": 10035,
         "coordinates": "40.7954428270431, -73.93096855884448",
-        "latitude": "40.7954428270431,",
+        "latitude": 40.7954428270431,
         "longitude": -73.93096855884448,
         "neighborhood": "East Harlem",
         "borough": "Manhattan"
