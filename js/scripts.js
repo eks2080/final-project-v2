@@ -31,7 +31,7 @@ groceryStores.forEach(function (grocerystoresRecord) {
     if (grocerystoresRecord.name === 'Whole Foods') {
         color = '#556B2F'
     }
-    if (grocerystoresRecord.borough === 'Aldi') {
+    if (grocerystoresRecord.name === 'Aldi') {
         color = '#483D8B'
     }
     // if (grocerystoresRecord.borough === 'Brooklyn') {
@@ -67,38 +67,39 @@ map.on('load', function () {
         data: 'data/nta.geojson',
         generateId: true // this will add an id to each feature, this is necessary if we want to use featureState (see below)
     })
+    // using a match expression to give each a unique color based on the medium household income of the area, using range of income values
+    map.addLayer({
+        id: 'nta-fill',
+        type: 'fill',
+        source: 'medIncome',
+        paint: {
+            medIncome.forEach(function (medIncomeRecord) {
 
-    // not sure if using this yet; first add the fill layer, using a match expression to give each a unique color based on its boro_code property
-    //     map.addLayer({
-    //         id: 'borough-boundaries-fill',
-    //         type: 'fill',
-    //         source: 'borough-boundaries',
-    //         paint: {
-    //             'fill-color': [
-    //                 'match',
-    //                 ['get', 'boro_code'],
-    //                 '1',
-    //                 '#f4cae4',
-    //                 '2',
-    //                 '#cbd5e8',
-    //                 '3',
-    //                 '#fdcdac',
-    //                 '4',
-    //                 '#b3e2cd',
-    //                 /*                 '5',
-    //                                 '#e6f5c9', */
-    //                 '#ccc'
-    //             ],
-    //             // use a case expression to set the opacity of a polygon based on featureState
-    //             'fill-opacity': [
-    //                 'case',
-    //                 ['boolean', ['feature-state', 'hover'], false],
-    //                 1,  // opacity when hover is false
-    //                 0.5 // opacity when hover is true
-    //             ]
-    //         }
-    //     })
-    //     // add borough outlines after the fill layer, so the outline is "on top" of the fill
+                var color
+
+                if (medIncomeRecord.medIncome === 'Trader Joes') {
+                    color = '#9932CC'
+
+                'fill-color': [
+                    'match',
+                    ['get', 'value'],
+                    '0 - 20,000',
+                    '#f4cae4',
+                    '20,001-40,000',
+                    '#cbd5e8',
+                    '40,001-60,000',
+                    '#fdcdac',
+                    '60,000-80,000',
+                    '#b3e2cd',
+                    '80,001-100,000',
+                    '#e6f5c9',
+                    '100,001-500,000',
+                    '#e6f5c9',
+                    '#ccc'
+                ],
+            }
+        })
+    // add NTA outlines
     map.addLayer({
         id: 'nta-line',
         type: 'line',
@@ -107,6 +108,23 @@ map.on('load', function () {
             'line-color': '#6b6b6b',
         }
     })
+    //add in fresh zoning boundaries - fill and outlines
+
+    // //toggle median household income
+    //     $('#income-button').on('click', function () {
+    //         let value = 'visible'
+
+    //         if (incomeVisible === true) {
+    //             value = 'none'
+    //         }
+
+    //      // use setLayoutProperty to apply the visibility (either 'visible' or 'none' depending on the logic above)
+    //      map.setLayoutProperty('nta-fill', 'visibility', value)
+    //      map.setLayoutProperty('nta-line', 'visibility', value)
+
+    //      // flip the value in boroughsVisible to reflect the new state. (if true, it becomes false, if false it becomes true)
+    //      ntaVisible = !ntaVisible
+    //  })
 
     // click on a button and use flyTo to go to that borough. needs to be adjusted, re assignment 4 notes
     $('#queens-button').on('click', function () {
@@ -147,4 +165,3 @@ map.on('load', function () {
         })
     })
 })
-    
