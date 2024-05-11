@@ -1,4 +1,4 @@
-var = medianIncome = [
+var = income = [
     {
         "geotype": "NTA2020",
         "ntatype": 0,

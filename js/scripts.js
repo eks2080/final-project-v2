@@ -1,4 +1,6 @@
-//Setting up Mapbox
+//to do list - add fresh zoning boundaries to map, create toggles for everything, fix flyto instructions
+
+//Set up Mapbox
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZWtzMjA4MCIsImEiOiJjbHVsdWNmbTExNGg0MmtsZHVlOHN2Zzd5In0.wEYw-sKV39S4NkqO8CDQBw';
 
@@ -10,15 +12,15 @@ var mapOptions = {
     zoom: 10.5, // starting zoom,
 }
 
-// instantiate the map
+// create map
 const map = new mapboxgl.Map(mapOptions);
 
 
-// add a navitation control
+// add a navitation tool
 const nav = new mapboxgl.NavigationControl();
 map.addControl(nav, 'top-right');
 
-// loop over the grocery store script to make a marker for each record
+// loop over the grocery store script to style markers for each grocery store record
 groceryStores.forEach(function (grocerystoresRecord) {
 
     var color
@@ -34,13 +36,8 @@ groceryStores.forEach(function (grocerystoresRecord) {
     if (grocerystoresRecord.name === 'Aldi') {
         color = '#483D8B'
     }
-    // if (grocerystoresRecord.borough === 'Brooklyn') {
-    //     color = '#E9967A'
-    // }
-    // if (grocerystoresRecord.borough === 'Staten Island') {
-    //     color = '#E9967A'
-    // }
-    // create a popup to attach to the marker
+
+    // create a popup for each marker with store address and neighborhood
 
     const popup = new mapboxgl.Popup({
         offset: 24,
@@ -49,7 +46,7 @@ groceryStores.forEach(function (grocerystoresRecord) {
         `<strong>${grocerystoresRecord.name}</strong> is located on <strong>${grocerystoresRecord.address}</strong> in <strong>${grocerystoresRecord.neighborhood}</strong>. This median household income for this area is <strong> fix this </strong>.`
     );
 
-    // create a marker, set the coordinates, add the popup, add it to the map
+    // create the marker, set the coordinates, add the popup, add it to the map
     new mapboxgl.Marker({
         scale: 0.50,
         color: color,
@@ -61,44 +58,38 @@ groceryStores.forEach(function (grocerystoresRecord) {
 
 map.on('load', function () {
 
-    // add a geojson source for the borough boundaries
+    // add a geojson of NTA boundaries
     map.addSource('nta', {
         type: 'geojson',
         data: 'data/nta.geojson',
-        generateId: true // this will add an id to each feature, this is necessary if we want to use featureState (see below)
+        generateId: true
     })
-    // using a match expression to give each a unique color based on the medium household income of the area, using range of income values
+    // fill NTA boundaries based on median household income 
     map.addLayer({
         id: 'nta-fill',
         type: 'fill',
-        source: 'medIncome',
+        source: 'income',
         paint: {
-            medIncome.forEach(function (medIncomeRecord) {
-
-                var color
-
-                if (medIncomeRecord.medIncome === 'Trader Joes') {
-                    color = '#9932CC'
-
-                'fill-color': [
-                    'match',
-                    ['get', 'value'],
-                    '0 - 20,000',
-                    '#f4cae4',
-                    '20,001-40,000',
-                    '#cbd5e8',
-                    '40,001-60,000',
-                    '#fdcdac',
-                    '60,000-80,000',
-                    '#b3e2cd',
-                    '80,001-100,000',
-                    '#e6f5c9',
-                    '100,001-500,000',
-                    '#e6f5c9',
-                    '#ccc'
-                ],
-            }
-        })
+            'fill-color': [
+                'match',
+                ['get', 'value'],
+                '0 - 20,000',
+                '#f4cae4',
+                '20,001-40,000',
+                '#cbd5e8',
+                '40,001-60,000',
+                '#fdcdac',
+                '60,000-80,000',
+                '#b3e2cd',
+                '80,001-100,000',
+                '#e6f5c9',
+                '100,001-500,000',
+                '#e6f5c9',
+                '#ccc'
+            ],
+            'fill-opacity': 0.75
+        }
+    });
     // add NTA outlines
     map.addLayer({
         id: 'nta-line',
