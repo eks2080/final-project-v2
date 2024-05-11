@@ -58,72 +58,9 @@ groceryStores.forEach(function (grocerystoresRecord) {
 
 map.on('load', function () {
 
-    // add a geojson of NTA boundaries
-    map.addSource('nta2', {
-        type: 'geojson',
-        data: 'data/nta2.geojson',
-        generateId: true
-    })
-    // fill NTA boundaries based on median household income 
-    map.addLayer({
-        id: 'nta-fill',
-        type: 'fill',
-        source: 'nta2',
-        paint: {
-            'fill-color': [
-                'step',
-                ['get', 'medincomecsv_medincome2'],
-                '#f4cae4',  // Colors
-                20000, '#f4cae4',  // Lower bound 0 - 20,000
-                40000, '#cbd5e8',  // Lower bound 20,001 - 40,000
-                60000, '#fdcdac',  // Lower bound 40,001 - 60,000
-                80000, '#b3e2cd',  // Lower bound 60,000 - 80,000
-                100000, '#e6f5c9', // Lower bound 80,001 - 100,000
-                500000, '#e6f5c9'  // Lower bound 100,001 - 500,000
-            ],
-            'fill-opacity': 0.75
-        }
-    });
-    // add NTA outlines
-    map.addLayer({
-        id: 'nta-line',
-        type: 'line',
-        source: 'nta2',
-        paint: {
-            'line-color': '#6b6b6b',
-        }
-    })
-    // map.on('click','nta-fill')
-    // Set this layer to not be visible initially so it can be turned on using the botton
-    // map.setLayoutProperty('nta-fill', 'visibility', 'none');
-
-    // //toggle income visibility
-    // function toggleLayer() {
-    //     var visibility = map.getLayoutProperty('nta-fill', 'visibility', 'none')
-    //     if (visibility === 'visible') {
-    //         map.setLayoutProperty('nta-fill', 'visibility', 'none');
-    //     } else {
-    //         map.setLayoutProperty('nta-fill', 'visibility', 'visible');
-    //     }
-    // }
-    let ntaVisible = true
-
-    $('#median-income').on('click', function () {
-        let value = 'visible'
-        if (ntaVisible === true) {
-            value = 'none'
-        }
-        map.setLayoutProperty('nta-fill', 'visibility', value)
-
-        ntaVisible = !ntaVisible
-    })
-
-
-    //add in fresh zoning boundaries - fill and outlines
-
-
-    // click on a button and use flyTo to go to that borough. needs to be adjusted, re assignment 4 notes
-    $('#queens-button').on('click', function () {
+     // set up borough buttons. click on button and flyto that borough 
+     //needs to be adjusted, re assignment 4 notes
+     $('#queens-button').on('click', function () {
         map.flyTo({
             center: [-73.89387763569168, 40.73104567408716],
             zoom: 11,
@@ -159,5 +96,89 @@ map.on('load', function () {
             zoom: 11,
             duration: 1500
         })
+    })
+    
+    // add a geojson of NTA boundaries
+    map.addSource('nta2', {
+        type: 'geojson',
+        data: 'data/nta2.geojson',
+        generateId: true
+    })
+    // fill NTA boundaries based on median household income 
+    map.addLayer({
+        id: 'nta-fill',
+        type: 'fill',
+        source: 'nta2',
+        paint: {
+            'fill-color': [
+                'step',
+                ['get', 'medincomecsv_medincome2'],
+                '#f4cae4',  // Colors
+                20000, '#f4cae4',  // Lower bound 0 - 20,000
+                40000, '#cbd5e8',  // Lower bound 20,001 - 40,000
+                60000, '#fdcdac',  // Lower bound 40,001 - 60,000
+                80000, '#b3e2cd',  // Lower bound 60,000 - 80,000
+                100000, '#e6f5c9', // Lower bound 80,001 - 100,000
+                500000, '#e6f5c9'  // Lower bound 100,001 - 500,000
+            ],
+            'fill-opacity': 0.75
+        }
+    });
+    // add NTA outlines
+    map.addLayer({
+        id: 'nta-line',
+        type: 'line',
+        source: 'nta2',
+        paint: {
+            'line-color': '#6b6b6b',
+        }
+    })
+    //toggle visibility of median household income
+    let ntaVisible = true
+
+    $('#median-income').on('click', function () {
+        let value = 'visible'
+        if (ntaVisible === true) {
+            value = 'none'
+        }
+        map.setLayoutProperty('nta-fill', 'visibility', value)
+
+        ntaVisible = !ntaVisible
+    })
+
+    //add in fresh zoning boundaries - fill and outline
+    map.addSource('fresh', {
+        type: 'geojson',
+        data: 'data/fresh.geojson',
+        generateId: true
+    })
+        map.addLayer({
+            id: 'fresh-line',
+            type: 'line',
+            source: 'fresh',
+            paint: {
+                'line-color': '#6b6b6b',
+        }
+    })
+    map.addLayer({
+        id: 'fresh-fill',
+        type: 'fill',
+        source: 'fresh',
+        paint: {
+            'line-color': '#6b6b6b',
+        }
+    })
+    //toggle visibility of fresh boundaries
+    let freshVisible = true
+
+    $('#fresh-button').on('click', function () {
+        let value = 'visible'
+        if (freshVisible === true) {
+            value = 'none'
+        }
+        map.setLayoutProperty('fresh-line', 'visibility', value)
+        map.setLayoutProperty('fresh-fill', 'visibility', value)
+
+        freshVisible = !freshVisible
     })
 })
