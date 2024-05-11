@@ -1,4 +1,4 @@
-//to do list - create toggles for everything, fix flyto instructions
+//to do list - create toggles for grocery stores, fix hover pop-up, fix flyto instructions, change fills for all elements
 
 //Set up Mapbox
 
