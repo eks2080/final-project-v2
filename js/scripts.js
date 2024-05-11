@@ -1,4 +1,4 @@
-//to do list - add fresh zoning boundaries to map, create toggles for everything, fix flyto instructions
+//to do list - create toggles for everything, fix flyto instructions
 
 //Set up Mapbox
 
@@ -43,7 +43,7 @@ groceryStores.forEach(function (grocerystoresRecord) {
         offset: 24,
         anchor: 'bottom'
     }).setHTML(
-        `<strong>${grocerystoresRecord.name}</strong> is located on <strong>${grocerystoresRecord.address}</strong> in <strong>${grocerystoresRecord.neighborhood}</strong>. This median household income for this area is <strong> fix this </strong>.`
+        `<strong>${grocerystoresRecord.name}</strong> is located on <strong>${grocerystoresRecord.address}</strong> in <strong>${grocerystoresRecord.neighborhood}</strong>.`
     );
 
     // create the marker, set the coordinates, add the popup, add it to the map
@@ -58,9 +58,9 @@ groceryStores.forEach(function (grocerystoresRecord) {
 
 map.on('load', function () {
 
-     // set up borough buttons. click on button and flyto that borough 
-     //needs to be adjusted, re assignment 4 notes
-     $('#queens-button').on('click', function () {
+    // set up borough buttons. click on button and flyto that borough 
+    //needs to be adjusted, re assignment 4 notes
+    $('#queens-button').on('click', function () {
         map.flyTo({
             center: [-73.89387763569168, 40.73104567408716],
             zoom: 11,
@@ -97,7 +97,7 @@ map.on('load', function () {
             duration: 1500
         })
     })
-    
+
     // add a geojson of NTA boundaries
     map.addSource('nta2', {
         type: 'geojson',
@@ -152,14 +152,14 @@ map.on('load', function () {
         data: 'data/fresh.geojson',
         generateId: true
     })
-        map.addLayer({
-            id: 'fresh-line',
-            type: 'line',
-            source: 'fresh',
-            paint: {
-                'line-color': '#6b6b6b',
+    map.addLayer({
+        id: 'fresh-line',
+        type: 'line',
+        source: 'fresh',
+        paint: {
+            'line-color': '#6b6b6b',
         }
-    })
+    })    
     map.addLayer({
         id: 'fresh-fill',
         type: 'fill',
@@ -168,7 +168,11 @@ map.on('load', function () {
             'line-color': '#6b6b6b',
         }
     })
-    //toggle visibility of fresh boundaries
+    
+    //make fresh layers initially invisible to be turned on by buttons
+    map.setLayoutProperty('fresh-fill', 'visibility', 'none');
+    map.setLayoutProperty('fresh-line', 'visibility', 'none');
+
     let freshVisible = true
 
     $('#fresh-button').on('click', function () {
