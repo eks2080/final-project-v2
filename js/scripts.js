@@ -68,6 +68,7 @@ map.on('load', function () {
         })
     })
     $('#manhattan-button').on('click', function () {
+        //map.fitBounds([[-74.05050, 40.69046], [-73.90017, 40.87610]])
         map.flyTo({
             center: [-73.97369874032192, 40.77132321682226],
             zoom: 11,
@@ -104,7 +105,7 @@ map.on('load', function () {
         data: 'data/nta2.geojson',
         generateId: true
     })
-    // fill NTA boundaries based on median household income 
+    // fill NTA boundaries based on median household income and add hover opacity
     map.addLayer({
         id: 'nta-fill',
         type: 'fill',
@@ -121,7 +122,12 @@ map.on('load', function () {
                 100000, '#e6f5c9', // Lower bound 80,001 - 100,000
                 500000, '#e6f5c9'  // Lower bound 100,001 - 500,000
             ],
-            'fill-opacity': 0.75
+            'fill-opacity': [
+                'case',
+                ['boolean', ['feature-state', 'hover'], false],
+                1.0,
+                0.5
+            ]
         }
     });
     // add NTA outlines
@@ -133,6 +139,52 @@ map.on('load', function () {
             'line-color': '#6b6b6b',
         }
     })
+    //add hover for NTA areas
+    let hoveredPolygonId = null;
+
+    map.on('mousemove', 'nta-fill', (e) => {
+        if (e.features.length > 0) {
+            const ntaName = e.features[0].properties.nta2;
+
+            if (hoveredPolygonId !== null) {
+                map.setFeatureState(
+                    { source: 'nta2', id: hoveredPolygonId },
+                    { hover: false }
+                );
+            }
+            hoveredPolygonId = e.features[0].id;
+
+            map.setFeatureState(
+                { source: 'nta2', id: hoveredPolygonId },
+                { hover: true }
+            );
+
+            const aboutnta = document.getElementById("aboutnta");
+            aboutnta.innerHTML = `
+                <div><strong>Neighborhood Name: ${nta2.name}</strong></div>
+                <div>Median Household Income (2020):${nta2.medincomecsv_medincome2}</div>    
+              `;
+            aboutnta.style.display = "block";
+            aboutnta.style.left = e.point.x + 'px';
+            aboutnta.style.top = e.point.y + 'px';
+            }
+    });
+
+    map.on('mouseleave', 'nta-fill', () => {
+        if (hoveredPolygonId !== null) {
+            map.setFeatureState(
+                { source: 'nta2', id: hoveredPolygonId },
+                { hover: false }
+            );
+        }
+        hoveredPolygonId = null;
+
+        // Hide hover
+        //const aboutnta = document.getElementById("aboutnta");
+        //aboutnta.style.display = "none";
+    });
+
+
     //toggle visibility of median household income
     let ntaVisible = true
 
@@ -143,15 +195,15 @@ map.on('load', function () {
         }
         map.setLayoutProperty('nta-fill', 'visibility', value)
 
-        ntaVisible = !ntaVisible
-    })
+        ntaVisible = !ntaVisible;
+    });
 
     //add in fresh zoning boundaries - fill and outline
     map.addSource('fresh', {
         type: 'geojson',
         data: 'data/fresh.geojson',
         generateId: true
-    })
+    });
     map.addLayer({
         id: 'fresh-line',
         type: 'line',
@@ -159,7 +211,7 @@ map.on('load', function () {
         paint: {
             'line-color': '#6b6b6b',
         }
-    })    
+    });
     map.addLayer({
         id: 'fresh-fill',
         type: 'fill',
@@ -167,22 +219,22 @@ map.on('load', function () {
         paint: {
             'line-color': '#6b6b6b',
         }
-    })
-    
+    });
+
     //make fresh layers initially invisible to be turned on by buttons
     map.setLayoutProperty('fresh-fill', 'visibility', 'none');
     map.setLayoutProperty('fresh-line', 'visibility', 'none');
 
-    let freshVisible = true
+    let freshVisible = true;
 
     $('#fresh-button').on('click', function () {
         let value = 'visible'
         if (freshVisible === true) {
-            value = 'none'
+            value = 'none';
         }
         map.setLayoutProperty('fresh-line', 'visibility', value)
         map.setLayoutProperty('fresh-fill', 'visibility', value)
 
         freshVisible = !freshVisible
-    })
-})
+    });
+});
