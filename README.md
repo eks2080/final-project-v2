@@ -1,0 +1,3 @@
+This project will look at access to three chain grocery stores of varying affordability in New York City. The map will show median household income by neighborhood tabulation area, overlayed with the locations of: Trader Joe's, Aldi, and Whole Foods grocery stores. The map will also toggle the zoning boundaries for the FRESH zoning program - a building density bonus offered to developers if they include grocery stores in their buildings. This is only available in areas designated as food deserts. 
+
+Viewers will be able to toggle the different layers, move between grocery stores, and zoom to different boroughs. 
