@@ -65,7 +65,7 @@ map.on('load', function () {
         generateId: true
     })
     // fill NTA boundaries based on median household income 
-        map.addLayer({
+    map.addLayer({
         id: 'nta-fill',
         type: 'fill',
         source: 'nta2',
@@ -93,23 +93,34 @@ map.on('load', function () {
             'line-color': '#6b6b6b',
         }
     })
+    // map.on('click','nta-fill')
+    // Set this layer to not be visible initially so it can be turned on using the botton
+    // map.setLayoutProperty('nta-fill', 'visibility', 'none');
+
+    // //toggle income visibility
+    // function toggleLayer() {
+    //     var visibility = map.getLayoutProperty('nta-fill', 'visibility', 'none')
+    //     if (visibility === 'visible') {
+    //         map.setLayoutProperty('nta-fill', 'visibility', 'none');
+    //     } else {
+    //         map.setLayoutProperty('nta-fill', 'visibility', 'visible');
+    //     }
+    // }
+    let ntaVisible = true
+
+    $('#median-income').on('click', function () {
+        let value = 'visible'
+        if (ntaVisible === true) {
+            value = 'none'
+        }
+        map.setLayoutProperty('nta-fill', 'visibility', value)
+
+        ntaVisible = !ntaVisible
+    })
+
+
     //add in fresh zoning boundaries - fill and outlines
 
-    // //toggle median household income
-    //     $('#income-button').on('click', function () {
-    //         let value = 'visible'
-
-    //         if (incomeVisible === true) {
-    //             value = 'none'
-    //         }
-
-    //      // use setLayoutProperty to apply the visibility (either 'visible' or 'none' depending on the logic above)
-    //      map.setLayoutProperty('nta-fill', 'visibility', value)
-    //      map.setLayoutProperty('nta-line', 'visibility', value)
-
-    //      // flip the value in boroughsVisible to reflect the new state. (if true, it becomes false, if false it becomes true)
-    //      ntaVisible = !ntaVisible
-    //  })
 
     // click on a button and use flyTo to go to that borough. needs to be adjusted, re assignment 4 notes
     $('#queens-button').on('click', function () {
