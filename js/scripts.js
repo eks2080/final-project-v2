@@ -59,33 +59,27 @@ groceryStores.forEach(function (grocerystoresRecord) {
 map.on('load', function () {
 
     // add a geojson of NTA boundaries
-    map.addSource('nta', {
+    map.addSource('nta2', {
         type: 'geojson',
-        data: 'data/nta.geojson',
+        data: 'data/nta2.geojson',
         generateId: true
     })
     // fill NTA boundaries based on median household income 
-    map.addLayer({
+        map.addLayer({
         id: 'nta-fill',
         type: 'fill',
-        source: 'income',
+        source: 'nta2',
         paint: {
             'fill-color': [
-                'match',
-                ['get', 'value'],
-                '0 - 20,000',
-                '#f4cae4',
-                '20,001-40,000',
-                '#cbd5e8',
-                '40,001-60,000',
-                '#fdcdac',
-                '60,000-80,000',
-                '#b3e2cd',
-                '80,001-100,000',
-                '#e6f5c9',
-                '100,001-500,000',
-                '#e6f5c9',
-                '#ccc'
+                'step',
+                ['get', 'medincomecsv_medincome2'],
+                '#f4cae4',  // Colors
+                20000, '#f4cae4',  // Lower bound 0 - 20,000
+                40000, '#cbd5e8',  // Lower bound 20,001 - 40,000
+                60000, '#fdcdac',  // Lower bound 40,001 - 60,000
+                80000, '#b3e2cd',  // Lower bound 60,000 - 80,000
+                100000, '#e6f5c9', // Lower bound 80,001 - 100,000
+                500000, '#e6f5c9'  // Lower bound 100,001 - 500,000
             ],
             'fill-opacity': 0.75
         }
@@ -94,7 +88,7 @@ map.on('load', function () {
     map.addLayer({
         id: 'nta-line',
         type: 'line',
-        source: 'nta',
+        source: 'nta2',
         paint: {
             'line-color': '#6b6b6b',
         }
