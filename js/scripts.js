@@ -225,9 +225,9 @@ map.on('load', function () {
 
             const aboutnta = document.getElementById("aboutnta");
             aboutnta.innerHTML = `
-                <div><strong>Neighborhood Name: ${e.features[0].properties.nta2.ntaname}</strong></div>
-                <div><strong>Borough: ${e.features[0].properties.nta2.boroname}</strong></div>
-                <div>Median Household Income (2020):${e.features[0].properties.nta2.medincomecsv_medincome2}</div>    
+                <div><strong>Neighborhood Name: ${e.features[0].properties.ntaname}</strong></div>
+                <div><strong>Borough: ${e.features[0].properties.boroname}</strong></div>
+                <div>Median Household Income (2020):${e.features[0].properties.medincomecsv_medincome2}</div>    
               `;
             aboutnta.style.display = "block";
             aboutnta.style.left = e.point.x + 'px';
