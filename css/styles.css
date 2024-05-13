@@ -173,3 +173,17 @@ body {
   opacity: 1;
   transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
 }
+
+.aboutnta {
+    position: absolute;
+    display: none;
+    background-color: #5f5d5d;
+    border: 1.5px solid #000;
+    padding: 10px; 
+    z-index: 9999;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    border-radius: 5px; 
+    font-size: 14px; 
+    color: #ffffff; 
+    line-height: 1.2;
+}

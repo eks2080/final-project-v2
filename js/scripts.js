@@ -46,7 +46,7 @@ groceryStores.forEach(function (grocerystoresRecord) {
         offset: 24,
         anchor: 'bottom'
     }).setHTML(
-        `<strong>${grocerystoresRecord.name}</strong> is located on <strong>${grocerystoresRecord.address}</strong> in <strong>${grocerystoresRecord.neighborhood}</strong>., <strong>${grocerystoresRecord.borough}</strong>.`
+        `<strong>${grocerystoresRecord.name}</strong> is located on <strong>${grocerystoresRecord.address}</strong> in <strong>${grocerystoresRecord.neighborhood}</strong>, <strong>${grocerystoresRecord.borough}</strong>.`
     );
 
     // create the marker, set the coordinates, add the popup, add it to the map
@@ -225,9 +225,9 @@ map.on('load', function () {
 
             const aboutnta = document.getElementById("aboutnta");
             aboutnta.innerHTML = `
-                <div><strong>Neighborhood Name: ${e.features[0].properties.ntaname}</strong></div>
-                <div><strong>Borough: ${e.features[0].properties.boroname}</strong></div>
-                <div>Median Household Income (2020):${e.features[0].properties.medincomecsv_medincome2}</div>    
+                <div>Neighborhood Name: <strong>${e.features[0].properties.ntaname}</strong></div>
+                <div>Borough: <strong>${e.features[0].properties.boroname}</strong></div>
+                <div>Median Household Income (2020): <strong>${e.features[0].properties.medincomecsv_medincome2}</strong></div>    
               `;
             aboutnta.style.display = "block";
             aboutnta.style.left = e.point.x + 'px';
@@ -244,9 +244,9 @@ map.on('load', function () {
         }
         hoveredPolygonId = null;
 
-        // Hide hover
-        //const aboutnta = document.getElementById("aboutnta");
-        //aboutnta.style.display = "none";
+        //Hide hover
+        const aboutnta = document.getElementById("aboutnta");
+        aboutnta.style.display = "none";
     });
 
 
