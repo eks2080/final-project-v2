@@ -54,29 +54,27 @@ groceryStores.forEach(function (grocerystoresRecord) {
     })
         .setLngLat([grocerystoresRecord.longitude, grocerystoresRecord.latitude])
         .setPopup(popup)
-    
-        markers.addTo(map);
+        .addTo(map);
     })
 
-    function toggleMarkersVisibility(storeName) {
-        markers.forEach(marker => {
-            if (marker.getElement().style.display === 'none') {
-                marker.getElement().style.display = 'block';
-            } else {
-                marker.getELement().style.display = 'none';
-            }
-        })
+    // function toggleMarkersVisibility(storeName) {
+    //     markers.forEach(marker => {
+    //         if (marker.getElement().style.display === 'none') {
+    //             marker.getElement().style.display = 'block';
+    //         } else {
+    //             marker.getELement().style.display = 'none';
+    //         }
+    //     })
 
-        $('#trader-joes').on('click', function () {
-            toggleMarkersVisibility('Trader Joes');
-        })
-        $('#whole-foods').on('click', function () {
-            toggleMarkersVisibility('Whole Foodss');
-        })
-        $('#aldi').on('click', function () {
-            toggleMarkersVisibility('Aldi');
-        })
-    }
+        // $('#trader-joes').on('click', function () {
+        //     toggleMarkersVisibility('Trader Joes');
+        // })
+        // $('#whole-foods').on('click', function () {
+        //     toggleMarkersVisibility('Whole Foodss');
+        // })
+        // $('#aldi').on('click', function () {
+        //     toggleMarkersVisibility('Aldi');
+        // })
 
 map.on('load', function () {
 
