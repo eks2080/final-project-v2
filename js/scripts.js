@@ -1,4 +1,4 @@
-//to do list - create toggles for grocery stores, fix hover pop-up, fix flyto instructions, change fills for all elements
+//to do list - create toggles for grocery stores, fix hover pop-up, change fills for all elements
 
 //Set up Mapbox
 
@@ -61,40 +61,79 @@ map.on('load', function () {
     // set up borough buttons. click on button and flyto that borough 
     //needs to be adjusted, re assignment 4 notes
     $('#queens-button').on('click', function () {
+        const targetCenter = [-73.89387763569168, 40.73104567408716];
+        const targetZoom = 11;
+
+        const offsetLng = -0.03;
+        const offsetLat = 0.005;
+
+        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1]-offsetLat];
+
         map.flyTo({
-            center: [-73.89387763569168, 40.73104567408716],
-            zoom: 11,
+            center: adjustedCenter,
+            zoom: targetZoom,
             duration: 1500
         })
     })
     $('#manhattan-button').on('click', function () {
-        //map.fitBounds([[-74.05050, 40.69046], [-73.90017, 40.87610]])
+        const targetCenter = [-73.97369874032192, 40.77132321682226];
+        const targetZoom = 11;
+
+        const offsetLng = -0.01;
+        const offsetLat = 0.005;
+
+        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1]-offsetLat];
+
         map.flyTo({
-            center: [-73.97369874032192, 40.77132321682226],
-            zoom: 11,
+            center: adjustedCenter,
+            zoom: targetZoom,
             duration: 1500
         })
     })
     $('#bronx-button').on('click', function () {
+        const targetCenter = [-73.91579103266682, 40.81437684228872];
+        const targetZoom = 11.5;
+
+        const offsetLng = -0.01;
+        const offsetLat = -0.03;
+
+        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1]-offsetLat];
+
         map.flyTo({
-            center: [-73.91579103266682, 40.81437684228872],
-            zoom: 11,
+            center: adjustedCenter,
+            zoom: targetZoom,
             duration: 1500
         })
     })
 
     $('#brooklyn-button').on('click', function () {
+        const targetCenter = [-73.95743869447674, 40.644049824373106];
+        const targetZoom = 11;
+
+        const offsetLng = -0.05;
+        const offsetLat = 0.005;
+
+        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1]-offsetLat];
+
         map.flyTo({
-            center: [-73.95743869447674, 40.644049824373106],
-            zoom: 11,
+            center: adjustedCenter,
+            zoom: targetZoom,
             duration: 1500
         })
     })
 
     $('#staten-island-button').on('click', function () {
+        const targetCenter = [-74.15564345189712, 40.582654444824755];
+        const targetZoom = 11;
+
+        const offsetLng = -0.05;
+        const offsetLat = 0.005;
+
+        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1]-offsetLat];
+
         map.flyTo({
-            center: [-73.95743869447674, 40.644049824373106],
-            zoom: 11,
+            center: adjustedCenter,
+            zoom: targetZoom,
             duration: 1500
         })
     })
@@ -167,7 +206,7 @@ map.on('load', function () {
             aboutnta.style.display = "block";
             aboutnta.style.left = e.point.x + 'px';
             aboutnta.style.top = e.point.y + 'px';
-            }
+        }
     });
 
     map.on('mouseleave', 'nta-fill', () => {
