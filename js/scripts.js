@@ -1,4 +1,4 @@
-//to do list - create toggles for grocery stores, fix hover pop-up, change fills for all elements
+//to do list - create toggles for grocery stores, fix hover pop-up
 
 //Set up Mapbox
 
@@ -173,13 +173,13 @@ map.on('load', function () {
             'fill-color': [
                 'step',
                 ['get', 'medincomecsv_medincome2'],
-                '#f4cae4',  // Colors
-                20000, '#f4cae4',  // Lower bound 0 - 20,000
-                40000, '#cbd5e8',  // Lower bound 20,001 - 40,000
-                60000, '#fdcdac',  // Lower bound 40,001 - 60,000
-                80000, '#b3e2cd',  // Lower bound 60,000 - 80,000
-                100000, '#e6f5c9', // Lower bound 80,001 - 100,000
-                500000, '#e6f5c9'  // Lower bound 100,001 - 500,000
+                '#ffffff',  // Colors
+                20000, '#d9f2d9',  // Lower bound 0 - 20,000
+                40000, '#9fdf9f',  // Lower bound 20,001 - 40,000
+                60000, '#66cc66',  // Lower bound 40,001 - 60,000
+                80000, '#39ac39',  // Lower bound 60,000 - 80,000
+                100000, '#339933', // Lower bound 80,001 - 100,000
+                500000, '#267326'  // Lower bound 100,001 - 500,000
             ],
             'fill-opacity': [
                 'case',
@@ -220,9 +220,9 @@ map.on('load', function () {
 
             const aboutnta = document.getElementById("aboutnta");
             aboutnta.innerHTML = `
-                <div><strong>Neighborhood Name: ${nta2.name}</strong></div>
-                <div><strong>Borough: ${nta2.boroname}</strong></div>
-                <div>Median Household Income (2020):${nta2.medincomecsv_medincome2}</div>    
+                <div><strong>Neighborhood Name: ${e.features[0].properties.nta2.ntaname}</strong></div>
+                <div><strong>Borough: ${e.features[0].properties.nta2.boroname}</strong></div>
+                <div>Median Household Income (2020):${e.features[0].properties.nta2.medincomecsv_medincome2}</div>    
               `;
             aboutnta.style.display = "block";
             aboutnta.style.left = e.point.x + 'px';
@@ -277,7 +277,8 @@ map.on('load', function () {
         type: 'fill',
         source: 'fresh',
         paint: {
-            'line-color': '#6b6b6b',
+            'fill-color': '#E8E8E8',
+            'fill-opacity': 0.75,
         }
     });
 
