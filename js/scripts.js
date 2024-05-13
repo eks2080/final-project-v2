@@ -1,4 +1,4 @@
-//to do list - create toggles for grocery stores, fix hover pop-up
+//to do list - create toggles for grocery stores and fix hover pop-up
 
 //Set up Mapbox
 
