@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title> Title about grocery stores/income/and FRESH program</title>
+    <title> New York City's Grocery Store Spread</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet" href="styles.css">
     <link href="css/styles.css" rel="stylesheet">
@@ -32,39 +32,78 @@
 <body>
     <div id="sidebar">
         <div class="header">
-            <h1>Where are the grocery stores? </h1>
+            <h1>Grocery Game </h1>
         </div>
-        <p>Information here about the FRESH program and the three big grocery store chains; income information will go here to and legend will include a color key for median income by zip code</p>
+        <h4>How do three grocery chains serve NYC residents?</h4>
+        <p>Information here about the FRESH program and the three big grocery store chains; income information will go
+            here to and legend will include a color key for median income by zip code</p>
+
+        <!--Create legend for median income and toggle button-->
+
+        <div class="income">
+            <h3>Median Household Income (2020)</h1>
+                <div>
+                    <span class="income-key" style="background-color: #d9f2d9;"></span>
+                    <span>$0 - $20,000</span>
+                </div>
+                <div>
+                    <span class="income-key" style="background-color: #9fdf9f;"></span>
+                    <span>$20,001 - $40,000</span>
+                </div>
+                <div>
+                    <span class="income-key" style="background-color: #66cc66;"></span>
+                    <span>$40,001 - $60,000</span>
+                </div>
+                <div>
+                    <span class="income-key" style="background-color: #39ac39;"></span>
+                    <span>$60,001 - $80,000</span>
+                </div>
+                <div>
+                    <span class="income-key" style="background-color: #339933;"></span>
+                    <span>$80,001 - $100,000</span>
+                </div>
+                <div>
+                    <span class="income-key" style="background-color: #267326;"></span>
+                    <span>Over $100,000</span>
+                </div>
+                <button class="income-button" id="median-income">Toggle Median-Household Income by Area</button>
+        </div>
+
 
         <!-- buttons for borough-based map view -->
-        <div class="description-text">Click on the borough button to zoom in to that borough's stores or on the marker to learn more about the store!</div>
-        <button class="button-50" id="brooklyn-button">Brooklyn</button>
-        <button class="button-50" id="bronx-button">Bronx</button>
-        <button class="button-50" id="manhattan-button">Manhattan</button>
-        <button class="button-50" id="queens-button">Queens</button>
-        <button class="button-50" id="staten-island-button">Staten Island</button>
+        <div class="boroughs">
+            <h3>Click on a borough button to zoom to that area</h1>
+                <button class="button-50" id="brooklyn-button">Brooklyn</button>
+                <button class="button-50" id="bronx-button">Bronx</button>
+                <button class="button-50" id="manhattan-button">Manhattan</button>
+                <button class="button-50" id="queens-button">Queens</button>
+                <button class="button-50" id="staten-island-button">Staten Island</button>
+        </div>
 
         <!-- buttons for grocery store toggle map view -->
-        <button class="tj-button" id="trader-joes"> Trader Joes</button>
-        <button class="wf-button" id="whole-foods"> Whole Foods</button>
-        <button class="aldi-button" id="aldi">Aldi</button>
+        <div class="store-buttons">
+            <h3> Click on the grocery store name to toggle their stores.</h1>
+                <button class="tj-button" id="trader-joes"> Trader Joes</button>
+                <button class="wf-button" id="whole-foods"> Whole Foods</button>
+                <button class="aldi-button" id="aldi">Aldi</button>
+        </div>
 
-        <!-- button to toggle median income level-->
-        <button class="income-button" id="median-income">Toggle Median-Household Income by Area</button>
+        <!-- about FRESH and button to toggle FRESH boundaries-->
+        <div class="fresh-program">
+            <h3>Click the button to see the boundaries for the FRESH program </h1>
+                <button class="fresh-zoning" id="fresh-button">Toggle FRESH Zoning Boundaries</button>
+        </div>
 
-        <!-- button to toggle FRESH boundaries-->
-        <button class="fresh-zoning" id="fresh-button">Toggle FRESH Zoning Boundaries</button>
-
-        <div class="legend">
+        <div class="source">
             <a class="source-code-link" href="https://github.com/eks2080/final-project-v2">Source Code</a>
         </div>
     </div>
 
     <!--Call scripts and add jQuery-->
-    </div>
     <div id="map-container"></div>
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="js/grocery-stores.js"></script>
     <script src="js/scripts.js"></script>
 
