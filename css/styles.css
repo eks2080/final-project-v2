@@ -1,5 +1,7 @@
 /* need to do/re-do all styling, including add flex boxes and different elements for the legend; including have the company's logo as the marker */
 
+/*general map style*/
+
 * {
     font-family: georgia;
 }
@@ -24,16 +26,21 @@ body {
     padding: 10px;
 }
 
+/*sidebar - general styling*/
+
 #sidebar {
     position: absolute;
     top: 20px;
     left: 20px;
     z-index: 1;
     width: 350px;
-    background: #fbf2ccd3;
+    background: #e7e1c7de;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 12px;
+    border-color:  #060505;
+
 }
+/*sidebar - top half of text*/
 
 #sidebar h1 {
     font-size: 24px;
@@ -94,7 +101,3 @@ body {
 }
 
 /* buttons styles */
-
-#sidebar.income {
-    text-align: center;
-}

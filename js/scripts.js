@@ -22,6 +22,8 @@ map.addControl(nav, 'top-right');
 
 // loop over the grocery store script to style markers for each grocery store record
 
+var marker = [];
+
 groceryStores.forEach(function (grocerystoresRecord) {
 
     var color
@@ -48,33 +50,36 @@ groceryStores.forEach(function (grocerystoresRecord) {
     );
 
     // create the marker, set the coordinates, add the popup, add it to the map
-    new mapboxgl.Marker({
+    var marker = new mapboxgl.Marker({
         scale: 0.50,
         color: color,
     })
         .setLngLat([grocerystoresRecord.longitude, grocerystoresRecord.latitude])
         .setPopup(popup)
         .addTo(map);
-    })
+});
 
-    // function toggleMarkersVisibility(storeName) {
-    //     markers.forEach(marker => {
-    //         if (marker.getElement().style.display === 'none') {
-    //             marker.getElement().style.display = 'block';
-    //         } else {
-    //             marker.getELement().style.display = 'none';
-    //         }
-    //     })
+//toggle grocery store marker visibility//
 
-        // $('#trader-joes').on('click', function () {
-        //     toggleMarkersVisibility('Trader Joes');
-        // })
-        // $('#whole-foods').on('click', function () {
-        //     toggleMarkersVisibility('Whole Foodss');
-        // })
-        // $('#aldi').on('click', function () {
-        //     toggleMarkersVisibility('Aldi');
-        // })
+// function toggleMarkerVisibility(storeName) {
+//     marker.forEach(marker => {
+//         if (marker.getElement().style.display === 'none') {
+//             marker.getElement().style.display = 'block';
+//         } else {
+//             marker.getElement().style.display = 'none';
+//         }
+//     });
+// }
+
+// $('#trader-joes').on('click', function () {
+//     toggleMarkerVisibility('Trader Joes');
+// })
+// $('#whole-foods').on('click', function () {
+//     toggleMarkerVisibility('Whole Foodss');
+// })
+// $('#aldi').on('click', function () {
+//     toggleMarkerVisibility('Aldi');
+// });
 
 map.on('load', function () {
 
