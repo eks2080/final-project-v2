@@ -21,6 +21,7 @@ const nav = new mapboxgl.NavigationControl();
 map.addControl(nav, 'top-right');
 
 // loop over the grocery store script to style markers for each grocery store record
+
 groceryStores.forEach(function (grocerystoresRecord) {
 
     var color
@@ -43,7 +44,7 @@ groceryStores.forEach(function (grocerystoresRecord) {
         offset: 24,
         anchor: 'bottom'
     }).setHTML(
-        `<strong>${grocerystoresRecord.name}</strong> is located on <strong>${grocerystoresRecord.address}</strong> in <strong>${grocerystoresRecord.neighborhood}</strong>.`
+        `<strong>${grocerystoresRecord.name}</strong> is located on <strong>${grocerystoresRecord.address}</strong> in <strong>${grocerystoresRecord.neighborhood}</strong>., <strong>${grocerystoresRecord.borough}</strong>.`
     );
 
     // create the marker, set the coordinates, add the popup, add it to the map
@@ -53,8 +54,29 @@ groceryStores.forEach(function (grocerystoresRecord) {
     })
         .setLngLat([grocerystoresRecord.longitude, grocerystoresRecord.latitude])
         .setPopup(popup)
-        .addTo(map);
-})
+    
+        markers.addTo(map);
+    })
+
+    function toggleMarkersVisibility(storeName) {
+        markers.forEach(marker => {
+            if (marker.getElement().style.display === 'none') {
+                marker.getElement().style.display = 'block';
+            } else {
+                marker.getELement().style.display = 'none';
+            }
+        })
+
+        $('#trader-joes').on('click', function () {
+            toggleMarkersVisibility('Trader Joes');
+        })
+        $('#whole-foods').on('click', function () {
+            toggleMarkersVisibility('Whole Foodss');
+        })
+        $('#aldi').on('click', function () {
+            toggleMarkersVisibility('Aldi');
+        })
+    }
 
 map.on('load', function () {
 
@@ -67,7 +89,7 @@ map.on('load', function () {
         const offsetLng = -0.03;
         const offsetLat = 0.005;
 
-        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1]-offsetLat];
+        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1] - offsetLat];
 
         map.flyTo({
             center: adjustedCenter,
@@ -82,7 +104,7 @@ map.on('load', function () {
         const offsetLng = -0.01;
         const offsetLat = 0.005;
 
-        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1]-offsetLat];
+        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1] - offsetLat];
 
         map.flyTo({
             center: adjustedCenter,
@@ -97,7 +119,7 @@ map.on('load', function () {
         const offsetLng = -0.01;
         const offsetLat = -0.03;
 
-        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1]-offsetLat];
+        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1] - offsetLat];
 
         map.flyTo({
             center: adjustedCenter,
@@ -113,7 +135,7 @@ map.on('load', function () {
         const offsetLng = -0.05;
         const offsetLat = 0.005;
 
-        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1]-offsetLat];
+        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1] - offsetLat];
 
         map.flyTo({
             center: adjustedCenter,
@@ -129,7 +151,7 @@ map.on('load', function () {
         const offsetLng = -0.05;
         const offsetLat = 0.005;
 
-        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1]-offsetLat];
+        const adjustedCenter = [targetCenter[0] + offsetLng, targetCenter[1] - offsetLat];
 
         map.flyTo({
             center: adjustedCenter,
@@ -178,7 +200,7 @@ map.on('load', function () {
             'line-color': '#6b6b6b',
         }
     })
-    //add hover for NTA areas
+    //add hover popip for NTA areas, detailing neighorborhood name and household income
     let hoveredPolygonId = null;
 
     map.on('mousemove', 'nta-fill', (e) => {
@@ -201,6 +223,7 @@ map.on('load', function () {
             const aboutnta = document.getElementById("aboutnta");
             aboutnta.innerHTML = `
                 <div><strong>Neighborhood Name: ${nta2.name}</strong></div>
+                <div><strong>Borough: ${nta2.boroname}</strong></div>
                 <div>Median Household Income (2020):${nta2.medincomecsv_medincome2}</div>    
               `;
             aboutnta.style.display = "block";
