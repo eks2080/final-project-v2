@@ -2,6 +2,7 @@ This project will look at access to three chain grocery stores of varying afford
 
 Viewers will be able to toggle the different layers, move between grocery stores, and zoom to different boroughs. 
 
+The map can be viewed here: https://eks2080.github.io/final-project-v2/ 
 
 Sources: 
 Grocery Store Locations: gathered by author from chain's websites
