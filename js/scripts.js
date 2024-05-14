@@ -22,8 +22,6 @@ map.addControl(nav, 'top-right');
 
 // loop over the grocery store script to style markers for each grocery store record
 
-var marker = [];
-
 groceryStores.forEach(function (grocerystoresRecord) {
 
     var color
@@ -58,9 +56,51 @@ groceryStores.forEach(function (grocerystoresRecord) {
         .setLngLat([grocerystoresRecord.longitude, grocerystoresRecord.latitude])
         .setPopup(popup)
         .addTo(map);
-});
-
+    }
+)
 //toggle grocery store marker visibility//
+function hide() {
+    let markers = document.getElementsByClassName("name");
+    for (let i = 0; i <markers.length; i++) {
+        markers[i].style.visibility = "hidden";
+    }
+}
+
+function show() {
+    let markers = document.getElementsByClassName("name");
+    for (let i = 0; i < markers.length; i++) {
+        markers[i].style.visibility = "visible";
+    }
+}
+document.getElementById('trader-joes').addEventListener('click', toggleTraderJoes);
+document.getElementById('whole-foods').addEventListener('click', toggleWholeFoods);
+document.getElementById('aldi').addEventListener('click', toggleAldi);
+
+function toggleTraderJoes() {
+    toggleMarkers('Trader Joes');
+}
+
+function toggleWholeFoods() {
+    toggleMarkers('Whole Foods');
+}
+
+function toggleAldi() {
+    toggleMarkers('Aldi');
+}
+
+// Function to toggle visibility of markers for a specific category
+function toggleMarkers(category) {
+    let markers = document.getElementsByClassName("name");
+    for (let i = 0; i < markers.length; i++) {
+        if (markers[i].getAttribute('data-category') === category) {
+            if (markers[i].style.visibility === 'hidden') {
+                markers[i].style.visibility = 'visible';
+            } else {
+                markers[i].style.visibility = 'hidden';
+            }
+        }
+    }
+}
 
 // function toggleMarkerVisibility(storeName) {
 //     marker.forEach(marker => {
