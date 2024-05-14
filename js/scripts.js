@@ -1,5 +1,3 @@
-//to do list - create toggles for grocery stores and fix hover pop-up
-
 //Set up Mapbox
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZWtzMjA4MCIsImEiOiJjbHVsdWNmbTExNGg0MmtsZHVlOHN2Zzd5In0.wEYw-sKV39S4NkqO8CDQBw';
