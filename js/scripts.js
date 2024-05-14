@@ -58,7 +58,7 @@ groceryStores.forEach(function (grocerystoresRecord) {
         .addTo(map);
     }
 )
-//toggle grocery store marker visibility//
+//turn grocery store locations on and off//
 function hide() {
     let markers = document.getElementsByClassName("mapboxgl-marker");
     for (let i = 0; i <markers.length; i++) {
@@ -73,61 +73,15 @@ function show() {
     }
 }
 document.getElementById('turnon').addEventListener('click', () => {
-    hide()
-});
-document.getElementById('turnoff').addEventListener('click', () => {
     show()
 });
-
-function toggleTraderJoes() {
-    toggleMarkers('Trader Joes');
-}
-
-function toggleWholeFoods() {
-    toggleMarkers('Whole Foods');
-}
-
-function toggleAldi() {
-    toggleMarkers('Aldi');
-}
-
-// Function to toggle visibility of markers for a specific category
-function toggleMarkers(category) {
-    let markers = document.getElementsByClassName("name");
-    for (let i = 0; i < markers.length; i++) {
-        if (markers[i].getAttribute('data-category') === category) {
-            if (markers[i].style.visibility === 'hidden') {
-                markers[i].style.visibility = 'visible';
-            } else {
-                markers[i].style.visibility = 'hidden';
-            }
-        }
-    }
-}
-// function toggleMarkerVisibility(storeName) {
-//     marker.forEach(marker => {
-//         if (marker.getElement().style.display === 'none') {
-//             marker.getElement().style.display = 'block';
-//         } else {
-//             marker.getElement().style.display = 'none';
-//         }
-//     });
-// }
-
-// $('#trader-joes').on('click', function () {
-//     toggleMarkerVisibility('Trader Joes');
-// })
-// $('#whole-foods').on('click', function () {
-//     toggleMarkerVisibility('Whole Foodss');
-// })
-// $('#aldi').on('click', function () {
-//     toggleMarkerVisibility('Aldi');
-// });
+document.getElementById('turnoff').addEventListener('click', () => {
+    hide()
+});
 
 map.on('load', function () {
 
     // set up borough buttons. click on button and flyto that borough 
-    //needs to be adjusted, re assignment 4 notes
     $('#queens-button').on('click', function () {
         const targetCenter = [-73.89387763569168, 40.73104567408716];
         const targetZoom = 11;
@@ -317,7 +271,8 @@ map.on('load', function () {
         type: 'line',
         source: 'fresh',
         paint: {
-            'line-color': '#6b6b6b',
+            'line-color': '#212121',
+            'line-width': 3,
         }
     });
     map.addLayer({
@@ -326,7 +281,7 @@ map.on('load', function () {
         source: 'fresh',
         paint: {
             'fill-color': '#E8E8E8',
-            'fill-opacity': 0.75,
+            'fill-opacity': 0.05,
         }
     });
 
