@@ -46,6 +46,7 @@ groceryStores.forEach(function (grocerystoresRecord) {
         offset: 24,
         anchor: 'bottom'
     }).setHTML(
+
         `<strong>${grocerystoresRecord.name}</strong> is located on <strong>${grocerystoresRecord.address}</strong> in <strong>${grocerystoresRecord.neighborhood}</strong>, <strong>${grocerystoresRecord.borough}</strong>.`
     );
 
@@ -227,7 +228,7 @@ map.on('load', function () {
             aboutnta.innerHTML = `
                 <div>Neighborhood Name: <strong>${e.features[0].properties.ntaname}</strong></div>
                 <div>Borough: <strong>${e.features[0].properties.boroname}</strong></div>
-                <div>Median Household Income (2020): <strong>${e.features[0].properties.medincomecsv_medincome2}</strong></div>    
+                <div>Median Household Income (2020): <strong>${numeral(e.features[0].properties.medincomecsv_medincome2).format('$0,0')}</strong></div>
               `;
             aboutnta.style.display = "block";
             aboutnta.style.left = e.point.x + 'px';
