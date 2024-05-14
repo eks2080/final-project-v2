@@ -51,7 +51,7 @@ body {
 }
 
 #sidebar h3 {
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
     color: #060505;
 }
@@ -64,13 +64,13 @@ body {
 }
 
 #sidebar p {
-    font-size: 13px;
+    font-size: 12px;
     text-align: left;
-    padding: 5px;
-    line-height: 20px;
-    margin-bottom: 20px;
+    padding: 2px;
+    line-height: 15px;
+    margin-bottom: 10px;
     color: #060505;
-    border-radius: 1px;
+    border-radius: 5px;
 }
 
 #sidebar .header {
@@ -105,6 +105,10 @@ body {
     font-size: 14px;
     text-align: center;
     color: #060505;
+}
+
+.header h1 {
+    text-align: center;
 }
 
 /* style cholorpeth map legend */
