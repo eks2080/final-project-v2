@@ -131,7 +131,7 @@ body {
     height: 20px;
     margin-right: 5px;
     border: 1px solid #000;
-    font-size: 12px;
+    font-size: 10px;
     margin-bottom: 10px;
 }
 
@@ -149,7 +149,7 @@ body {
 }
 
 .legend-key span.color-box {
-    margin-right: 5px; /* Adjust margin between color box and text */
+    margin-right: 2px; /* Adjust margin between color box and text */
 }
 
 .legend-key span.legend-text {
