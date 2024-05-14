@@ -266,22 +266,22 @@ map.on('load', function () {
         data: 'data/fresh.geojson',
         generateId: true
     });
+    // map.addLayer({
+    //     id: 'fresh-fill',
+    //     type: 'fill',
+    //     source: 'fresh',
+    //     paint: {
+    //         'fill-color': '#E8E8E8',
+    //         'fill-opacity': 0.50,
+    //     }
+    // });
     map.addLayer({
         id: 'fresh-line',
         type: 'line',
         source: 'fresh',
         paint: {
             'line-color': '#212121',
-            'line-width': 3,
-        }
-    });
-    map.addLayer({
-        id: 'fresh-fill',
-        type: 'fill',
-        source: 'fresh',
-        paint: {
-            'fill-color': '#E8E8E8',
-            'fill-opacity': 0.05,
+            'line-width': 4,
         }
     });
 
