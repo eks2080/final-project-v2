@@ -14,7 +14,7 @@ body {
 #map-container {
     position: absolute;
     top: 0;
-    bottom: 0; 
+    bottom: 0;
     width: 100%;
 }
 
@@ -37,9 +37,10 @@ body {
     background: #e7e1c7de;
     padding: 10px;
     border-radius: 12px;
-    border-color:  #060505;
+    border-color: #060505;
 
 }
+
 /*sidebar - top half of text*/
 
 #sidebar h1 {
@@ -69,7 +70,7 @@ body {
     line-height: 20px;
     margin-bottom: 10px;
     color: #060505;
-    border-radius: 1px; 
+    border-radius: 1px;
 }
 
 #sidebar .header {
@@ -106,84 +107,149 @@ body {
     color: #060505;
 }
 
-/* buttons style */
+/* style cholorpeth map legend */
+.legend-container {
+    max-width: 400px;
+    display: inline-block;
+    word-wrap: break-word;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.legend-key {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border: 1px solid #000;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.legend-key h3 {
+    text-align: center;
+    margin-right: 10px;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+}
+.legend-key span {
+    display: inline-block;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.legend-key span.color-box {
+    margin-right: 5px; /* Adjust margin between color box and text */
+}
+
+.legend-key span.legend-text {
+    flex: 1; /* Allow the text to take up remaining space */
+}
+
+/* Adjust color for each income range and add in box to the legend*/
+.legend-key.color-1 {
+    background-color: #d9f2d9;
+}
+.legend-key.color-2 {
+    background-color: #9fdf9f;
+}
+.legend-key.color-3 {
+    background-color: #66cc66;
+}
+.legend-key.color-4 {
+    background-color: #39ac39;
+}
+.legend-key.color-5 {
+    background-color: #339933;
+}
+.legend-key.color-6 {
+    background-color: #267326;
+}
+
+/* styling buttons */
 
 .buttons {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid #18181a;
-  color: #18181a;
-  display: flex;
-  flex-direction: row;
-  line-height: 15px;
-  justify-content: center;
-  align-items: center;
-  font-size: 13px;
-  padding: 5px 5px 5px;
-  text-decoration: none;
-  cursor: pointer;
-  background: #fff;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #18181a;
+    color: #18181a;
+    display: flex;
+    flex-direction: row;
+    line-height: 15px;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    padding: 5px 5px 5px;
+    text-decoration: none;
+    cursor: pointer;
+    background: #fff;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 .buttons span:first-child {
-  position: relative;
-  transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
-  z-index: 10;
+    position: relative;
+    transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 10;
 }
 
 .buttons span:last-child {
-  color: white;
-  display: block;
-  position: absolute;
-  bottom: 0;
-  transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
-  z-index: 100;
-  opacity: 0;
-  top: 50%;
-  left: 50%;
-  transform: translateY(225%) translateX(-50%);
-  height: 10px;
-  line-height: 10px;
+    color: white;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 100;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateY(225%) translateX(-50%);
+    height: 10px;
+    line-height: 10px;
 }
 
 .buttons:after {
-  content: "";
-  position: absolute;
-  bottom: -50%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  transform-origin: bottom center;
-  transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
-  transform: skewY(9.3deg) scaleY(0);
-  z-index: 50;
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    transform-origin: bottom center;
+    transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    transform: skewY(9.3deg) scaleY(0);
+    z-index: 50;
 }
 
 .buttons:hover:after {
-  transform-origin: bottom center;
-  transform: skewY(9.3deg) scaleY(2);
+    transform-origin: bottom center;
+    transform: skewY(9.3deg) scaleY(2);
 }
 
 .buttons:hover span:last-child {
-  transform: translateX(-50%) translateY(-100%);
-  opacity: 1;
-  transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 1;
+    transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
 }
 
+/* styling hover */
 .aboutnta {
     position: absolute;
     display: none;
     background-color: #5f5d5d;
     border: 1.5px solid #000;
-    padding: 10px; 
+    padding: 10px;
     z-index: 9999;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    border-radius: 5px; 
-    font-size: 14px; 
-    color: #ffffff; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 14px;
+    color: #ffffff;
     line-height: 1.2;
 }
