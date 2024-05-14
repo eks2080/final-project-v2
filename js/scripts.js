@@ -60,21 +60,24 @@ groceryStores.forEach(function (grocerystoresRecord) {
 )
 //toggle grocery store marker visibility//
 function hide() {
-    let markers = document.getElementsByClassName("name");
+    let markers = document.getElementsByClassName("mapboxgl-marker");
     for (let i = 0; i <markers.length; i++) {
         markers[i].style.visibility = "hidden";
     }
 }
 
 function show() {
-    let markers = document.getElementsByClassName("name");
+    let markers = document.getElementsByClassName("mapboxgl-marker");
     for (let i = 0; i < markers.length; i++) {
         markers[i].style.visibility = "visible";
     }
 }
-document.getElementById('trader-joes').addEventListener('click', toggleTraderJoes);
-document.getElementById('whole-foods').addEventListener('click', toggleWholeFoods);
-document.getElementById('aldi').addEventListener('click', toggleAldi);
+document.getElementById('turnon').addEventListener('click', () => {
+    hide()
+});
+document.getElementById('turnoff').addEventListener('click', () => {
+    show()
+});
 
 function toggleTraderJoes() {
     toggleMarkers('Trader Joes');
@@ -101,7 +104,6 @@ function toggleMarkers(category) {
         }
     }
 }
-
 // function toggleMarkerVisibility(storeName) {
 //     marker.forEach(marker => {
 //         if (marker.getElement().style.display === 'none') {
