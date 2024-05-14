@@ -1,7 +1,6 @@
 /* need to create containers for each element and fix flexing for buttons; need to fix legend for income colors map and make markers the company's logo if possible */
 
 /*general map style*/
-
 * {
     font-family: georgia;
 }
@@ -33,16 +32,15 @@ body {
     top: 20px;
     left: 20px;
     z-index: 1;
-    width: 400px;
+    width: 450px;
     background: #e7e1c7de;
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 10px;
     border-color: #060505;
 
 }
 
 /*sidebar - top half of text*/
-
 #sidebar h1 {
     font-size: 24px;
     text-align: center;
@@ -51,7 +49,7 @@ body {
 }
 
 #sidebar h3 {
-    font-size: 13px;
+    font-size: 14px;
     text-align: center;
     color: #060505;
 }
@@ -67,10 +65,10 @@ body {
     font-size: 12px;
     text-align: left;
     padding: 2px;
-    line-height: 15px;
-    margin-bottom: 10px;
+    line-height: 14px;
+    margin-bottom: 0px;
     color: #060505;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 #sidebar .header {
@@ -114,18 +112,28 @@ body {
 /* style cholorpeth map legend */
 .legend-container {
     max-width: 400px;
-    max-height: 400px;
+    max-height: 250px;
     display: inline-block;
     word-wrap: break-word;
     margin-top: 20px;
     margin-bottom: 15px;
-    border: 1px solid #000;
+    border: 2px solid #000;
     padding: 10px;
+    overflow: auto;
+}
+.legend-inner-box {
+    width: 400px;
+
+}
+.legend-text {
+    font-size: 12px;
+    display: flex;
+    align-items:center;
 }
 
 .legend-key {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     width: 20px;
     height: 20px;
@@ -137,7 +145,7 @@ body {
 
 .legend-key h3 {
     text-align: center;
-    margin-right: 10px;
+    margin-right: 15px;
     padding: 5px;
     width: 20px;
     height: 20px;
@@ -156,7 +164,7 @@ body {
     flex: 5; /* Allow the text to take up remaining space */
 }
 
-/* Adjust color for each income range and add in box to the legend*/
+/* Create box and match color for each income range in the legend*/
 .legend-key.color-1 {
     background-color: #d9f2d9;
 }
