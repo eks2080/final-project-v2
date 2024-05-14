@@ -99,13 +99,39 @@ body {
     padding: 2px;
 }
 
+.header h1 {
+    text-align: center;
+}
+
+/* container for grocery stores */
 .stores h3 {
     font-size: 14px;
     text-align: center;
     color: #060505;
 }
 
-.header h1 {
+.store-box {
+    width: 400px;
+    text-align: center;
+}
+
+.stores {
+    text-align: center;
+}
+
+/* container for boroughs */
+.boroughs h3 {
+    font-size: 14px;
+    text-align: center;
+    color: #060505;
+}
+
+.boroughs-box {
+    width: 400px;
+    text-align: center;
+}
+
+.boroughs {
     text-align: center;
 }
 
@@ -184,7 +210,17 @@ body {
     background-color: #267326;
 }
 
-/* styling buttons */
+/* container for FRESH program*/
+.fresh-box {
+    width: 400px;
+    text-align: center;
+}
+
+.fresh-program {
+    text-align: center;
+}
+
+/* styling buttons - all buttons have the same general format */
 .buttons {
   background: #fff;
   backface-visibility: hidden;
