@@ -27,16 +27,16 @@ groceryStores.forEach(function (grocerystoresRecord) {
     // use if statements to assign colors based on borough
 
     if (grocerystoresRecord.name === 'Trader Joes') {
-        color = '#9932CC'
+        color = '#D21242'
     }
     if (grocerystoresRecord.name === 'Whole Foods') {
-        color = '#556B2F'
+        color = '#141414'
     }
     if (grocerystoresRecord.name === 'Aldi') {
-        color = '#483D8B'
+        color = '#1FC4F4'
     }
 
-    // create a popup for each marker with store address and neighborhood
+    // create a popup for each marker with store name, address, and neighborhood
 
     const popup = new mapboxgl.Popup({
         offset: 24,
@@ -56,7 +56,7 @@ groceryStores.forEach(function (grocerystoresRecord) {
         .addTo(map);
     }
 )
-//turn grocery store locations on and off//
+//create on and off buttons for grocery store locations//
 function hide() {
     let markers = document.getElementsByClassName("mapboxgl-marker");
     for (let i = 0; i <markers.length; i++) {
@@ -79,7 +79,7 @@ document.getElementById('turnoff').addEventListener('click', () => {
 
 map.on('load', function () {
 
-    // set up borough buttons. click on button and flyto that borough 
+    // set up buttons for each borough, using flyto to zoom to that borough 
     $('#queens-button').on('click', function () {
         const targetCenter = [-73.89387763569168, 40.73104567408716];
         const targetZoom = 11;
@@ -158,7 +158,7 @@ map.on('load', function () {
         })
     })
 
-    // add a geojson of NTA boundaries
+    // add geojson of NTA boundaries
     map.addSource('nta2', {
         type: 'geojson',
         data: 'data/nta2.geojson',
@@ -239,13 +239,13 @@ map.on('load', function () {
         }
         hoveredPolygonId = null;
 
-        //Hide hover
+        //Hide hover when out of layer
         const aboutnta = document.getElementById("aboutnta");
         aboutnta.style.display = "none";
     });
 
 
-    //toggle visibility of median household income
+    //create toggle of median household income visibility
     let ntaVisible = true
 
     $('#median-income').on('click', function () {
@@ -258,7 +258,7 @@ map.on('load', function () {
         ntaVisible = !ntaVisible;
     });
 
-    //add in fresh zoning boundaries - fill and outline
+    //add in fresh zoning boundaries geojson and outline of area
     map.addSource('fresh', {
         type: 'geojson',
         data: 'data/fresh.geojson',
@@ -283,7 +283,7 @@ map.on('load', function () {
         }
     });
 
-    //make fresh layers initially invisible to be turned on by buttons
+    //make fresh layers invisible upon load and able to be turned on by button
     map.setLayoutProperty('fresh-fill', 'visibility', 'none');
     map.setLayoutProperty('fresh-line', 'visibility', 'none');
 
